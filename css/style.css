@@ -68,6 +68,8 @@ h5 {
   color: #999;
   line-height: 16px;
   float: left;
+  margin-top: 2px;
+  margin-right: 3px;
 }
 
 .location-text {

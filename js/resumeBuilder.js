@@ -14,7 +14,7 @@ var bio =
   "github":"rpkraghu7",
   "location":"krishnagiri"
   },
-  "welcomemessage":"Vanakkam vanthanam",
+  "welcomeMessage":"Vanakkam vanthanam",
   "skills": ["web-developer","programmer","js"],
   "biopic": "images/fry.jpg"
 };
@@ -28,16 +28,12 @@ bio.display=function()
   var email =HTMLemail.replace("%data%",bio.contacts.email);
   var twitter =HTMLtwitter.replace("%data%",bio.contacts.twitter);
   var location1 =HTMLlocation.replace("%data%",bio.contacts.location);
-  var welcomemessage = HTMLwelcomeMsg.replace("%data%",bio.welcomemessage);
+  var welcomeMessage = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
   var pictureURL = HTMLbioPic.replace("%data%",bio.biopic);
 
-  if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-    var formattedskills = HTMLskills.replace("%data%", bio.skills[0]);
-    $("#skills").append(formattedskills);
-    formattedskills = HTMLskills.replace("%data%", bio.skills[1]);
-    $("#skills").append(formattedskills);
-    formattedskills = HTMLskills.replace("%data%", bio.skills[2]);
+$("#header").append(HTMLskillsStart);
+  for (var i=0; i<bio.skills.length;i++) {
+    var formattedskills = HTMLskills.replace("%data%", bio.skills[i]);
     $("#skills").append(formattedskills);
   }
 
@@ -49,6 +45,12 @@ bio.display=function()
   $("#topcontacts").append(email);
   $("#topContacts").append(twitter);
   $("#topcontacts").append(location1);
+  $("#footerContacts").append(mobile);
+  $("#footerContacts").append(github);
+  $("#footerContacts").append(email);
+  $("#footerContacts").append(twitter);
+  $("#footerContacts").append(location1);
+  $("#header").append(welcomeMessage);
 };
 
 bio.display();
@@ -60,26 +62,29 @@ var education={
       {
          "name":"kurinji matric higher secondary school",
         "degree": "10th",
-        "major": "Matriculation",
+        "majors": ["Matriculation","Hindi"],
         "location":"namakkal",
-        "dates": '2010'
+        "dates": '2010',
+        "url":"https://www.kurinjischoolnkl.in/cgi-sys/suspendedpage.cgi"
     },
     {
       "name":"kurinji higher secondary school",
       "degree" : "12th",
-      "major":"Maths-Biology",
+      "majors":["Maths","Biology"],
       "location":"namakkal",
-      "dates": '2012'
+      "dates": '2012',
+      "url":"https://www.kurinjischoolnkl.in/cgi-sys/suspendedpage.cgi"
     },
     {
       "name":"Anna University(CEG campus)",
       "degree": "B.E",
-      "major": "Biomedical Engineering",
+      "majors": ["Biomedical Engineering","Matlab"],
       "location": "chennai",
-      "dates": '2016'
+      "dates": '2016',
+      "url":"https://www.annauniv.edu/"
     }
   ],
-    "onlinecourses":
+    "onlineCourses":
     [
       {
       "school": "udacity",
@@ -101,28 +106,32 @@ education.display= function() {
     $("#education").append(HTMLschoolStart);
     for ( var i=0;i< education.schools.length ;i++)
      {
-
+          format =HTMLschoolName.replace("#",education.schools[i].url);
       var format = HTMLschoolName.replace("%data%",education.schools[i].name);
-      $(".education-entry:last").append(format);
+        $(".education-entry:last").append(format);
       format = HTMLschoolDegree.replace("%data%",education.schools[i].degree);
       $(".education-entry:last").append(format);
       format= HTMLschoolLocation.replace("%data%",education.schools[i].location);
       $(".education-entry:last").append(format);
       format =HTMLschoolDates.replace("%data%",education.schools[i].dates);
       $(".education-entry:last").append(format);
-      format = HTMLschoolMajor.replace("%data%",education.schools[i].major);
-      $(".education-entry:last").append(format);
+      format =HTMLschoolName.replace("#",education.schools[i].url);
+      for (var j=0;j<education.schools[j].majors.length;j++)
+          {
+          format = HTMLschoolMajor.replace("%data%",education.schools[i].majors[j]);
+          $(".education-entry:last").append(format);
+        }
     }
     $(".education-entry:last").append(HTMLonlineClasses);
-    for (i=0; i< education.onlinecourses.length ; i++)
+    for (i=0; i< education.onlineCourses.length ; i++)
     {
-      var format = HTMLonlineTitle.replace("%data%",education.onlinecourses[i].title);
+      var format = HTMLonlineTitle.replace("%data%",education.onlineCourses[i].title);
       $(".education-entry:last").append(format);
-      format = HTMLonlineSchool.replace("%data%",education.onlinecourses[i].school);
+      format = HTMLonlineSchool.replace("%data%",education.onlineCourses[i].school);
       $(".education-entry:last").append(format);
-      format =HTMLonlineDates.replace("%data%",education.onlinecourses[i].dates);
+      format =HTMLonlineDates.replace("%data%",education.onlineCourses[i].dates);
       $(".education-entry:last").append(format);
-      format = HTMLonlineURL.replace("%data%",education.onlinecourses[i].url);
+      format = HTMLonlineURL.replace("%data%",education.onlineCourses[i].url);
       $(".education-entry:last").append(format);
     }
 
@@ -137,14 +146,14 @@ var work = {
     "title" : "System-engineer",
     "employer" : "Infosys",
     "location" : "Bangalore",
-    "dates" : 2016,
+    "dates" : "2016",
     "description": "got hired for infosys from campus"
   },
   {
     "title" : "web-developer",
     "employer" : "udacity",
     "location" : "Chennai",
-    "dates" : 2016,
+    "dates" : "2016",
     "description" : "got shifted to udacity"
   }
 ]
@@ -165,6 +174,7 @@ for (var i=0;i<work.jobs.length; i++)
       $(".work-entry:last").append(formattedemployertitle);
       $(".work-entry:last").append(formatteddtaes);
       $(".work-entry:last").append(formatteddescription);
+      $(".work-entry:last").append(formattedlocation);
 }
 };
 
@@ -223,9 +233,9 @@ for ( var i=0;i<projects.projects.length ; i++)
       var format =HTMLprojectDescription.replace("%data%", projects.projects[i].description);
       $(".project-entry:last").append(format);
 
-      if(projects.projects[i].images.length>0)
-      {
-          var formatedimage=HTMLprojectImage.replace("%data%",projects.projects[i].images[0]);
+      for (var j =0;j<projects.projects[i].images.length;j++)
+        {
+          var formatedimage=HTMLprojectImage.replace("%data%",projects.projects[i].images[j]);
           $("project-entry:last").append(formatedimage);
         }
       }
