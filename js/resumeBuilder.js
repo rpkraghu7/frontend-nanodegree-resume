@@ -35,9 +35,9 @@ bio.display=function()
     $("#header").append(HTMLskillsStart);
     var formattedskills = HTMLskills.replace("%data%", bio.skills[0]);
     $("#skills").append(formattedskills);
-    var formattedskills = HTMLskills.replace("%data%", bio.skills[1]);
+    formattedskills = HTMLskills.replace("%data%", bio.skills[1]);
     $("#skills").append(formattedskills);
-    var formattedskills = HTMLskills.replace("%data%", bio.skills[2]);
+    formattedskills = HTMLskills.replace("%data%", bio.skills[2]);
     $("#skills").append(formattedskills);
   }
 
@@ -49,7 +49,7 @@ bio.display=function()
   $("#topcontacts").append(email);
   $("#topContacts").append(twitter);
   $("#topcontacts").append(location1);
-}
+};
 
 bio.display();
 
@@ -93,7 +93,7 @@ var education={
       "url":"https://github.com/rpkraghu7/portfolio"
     }
   ]
-}
+};
 
 education.display= function() {
 
@@ -106,15 +106,15 @@ education.display= function() {
       $(".education-entry:last").append(format);
       format = HTMLschoolDegree.replace("%data%",education.schools[i].degree);
       $(".education-entry:last").append(format);
-      var format= HTMLschoolLocation.replace("%data%",education.schools[i].location);
+      format= HTMLschoolLocation.replace("%data%",education.schools[i].location);
       $(".education-entry:last").append(format);
       format =HTMLschoolDates.replace("%data%",education.schools[i].dates);
       $(".education-entry:last").append(format);
-      var format = HTMLschoolMajor.replace("%data%",education.schools[i].major);
+      format = HTMLschoolMajor.replace("%data%",education.schools[i].major);
       $(".education-entry:last").append(format);
     }
     $(".education-entry:last").append(HTMLonlineClasses);
-    for ( var i=0; i< education.onlinecourses.length ; i++)
+    for (i=0; i< education.onlinecourses.length ; i++)
     {
       var format = HTMLonlineTitle.replace("%data%",education.onlinecourses[i].title);
       $(".education-entry:last").append(format);
@@ -126,7 +126,7 @@ education.display= function() {
       $(".education-entry:last").append(format);
     }
 
-}
+};
 
 education.display();
 
@@ -148,7 +148,7 @@ var work = {
     "description" : "got shifted to udacity"
   }
 ]
-}
+};
 
 work.display=function()
 {
@@ -166,7 +166,7 @@ for (var i=0;i<work.jobs.length; i++)
       $(".work-entry:last").append(formatteddtaes);
       $(".work-entry:last").append(formatteddescription);
 }
-}
+};
 
 
 work.display();
@@ -197,17 +197,17 @@ var projects = {
     "title": "portfolio project",
     "dates": "2016",
     "description": "In this project,I have built my first responsive portfolio project using responsive images including grunt",
-      "images" : ["images/fry.jpg"]
+      "images" : ["images/197x148.gif","images/197x148.gif"]
     //"github-link" : "https://github.com/rpkraghu7/portfolio.git"
   },
   {
     "title": "html project",
     "dates": '2016',
     "description": "In this project,I have built my first html mockup page.",
-    "images" : ["images/197x148.gif"]
+    "images" : ["images/197x148.gif","images/197x148.gif"]
   }
 ]
-}
+};
 
 projects.display=function()
 {
@@ -223,17 +223,15 @@ for ( var i=0;i<projects.projects.length ; i++)
       var format =HTMLprojectDescription.replace("%data%", projects.projects[i].description);
       $(".project-entry:last").append(format);
 
-      for (var j=0;j<projects.projects[i].images; j++)
+      if(projects.projects[i].images.length>0)
       {
-        if(projects.projects[i].images.length> 0)
-         {
-          var format=HTMLprojectImage.replace("%data%",projects.projects[i].images[j]);
-          $("project-entry:last").append(format);
+          var formatedimage=HTMLprojectImage.replace("%data%",projects.projects[i].images[0]);
+          $("project-entry:last").append(formatedimage);
         }
       }
 
-}
-}
+};
+
 projects.display();
 
 $("#mapDiv").append(googleMap);
