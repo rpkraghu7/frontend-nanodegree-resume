@@ -106,9 +106,9 @@ education.display= function() {
     $("#education").append(HTMLschoolStart);
     for ( var i=0;i< education.schools.length ;i++)
      {
-          format =HTMLschoolName.replace("#",education.schools[i].url);
-      var format = HTMLschoolName.replace("%data%",education.schools[i].name);
-        $(".education-entry:last").append(format);
+      var format =HTMLschoolName.replace("#",education.schools[i].url);
+      format = format.replace("%data%",education.schools[i].name);
+      $(".education-entry:last").append(format);
       format = HTMLschoolDegree.replace("%data%",education.schools[i].degree);
       $(".education-entry:last").append(format);
       format= HTMLschoolLocation.replace("%data%",education.schools[i].location);
@@ -116,7 +116,7 @@ education.display= function() {
       format =HTMLschoolDates.replace("%data%",education.schools[i].dates);
       $(".education-entry:last").append(format);
       format =HTMLschoolName.replace("#",education.schools[i].url);
-      for (var j=0;j<education.schools[j].majors.length;j++)
+      for (var j=0;j<education.schools[i].majors.length;j++)
           {
           format = HTMLschoolMajor.replace("%data%",education.schools[i].majors[j]);
           $(".education-entry:last").append(format);
@@ -236,7 +236,7 @@ for ( var i=0;i<projects.projects.length ; i++)
       for (var j =0;j<projects.projects[i].images.length;j++)
         {
           var formatedimage=HTMLprojectImage.replace("%data%",projects.projects[i].images[j]);
-          $("project-entry:last").append(formatedimage);
+          $(".project-entry:last").append(formatedimage);
         }
       }
 
